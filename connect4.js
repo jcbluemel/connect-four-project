@@ -11,9 +11,9 @@ const WIDTH = 7;
 const HEIGHT = 6;
 
 let currPlayer = 1; // active player: 1 or 2
-const board = []; // array of rows, each row is array of cells  (board[y][x])
+// const board = []; // array of rows, each row is array of cells  (board[y][x])
 
-makeBoard();
+let board = makeBoard();
 makeHtmlBoard();
 
 
@@ -59,10 +59,10 @@ function makeHtmlBoard() {
   // uses WIDTH to create table cells for each row
   for (let y = 0; y < HEIGHT; y++) {
     // TODO: Create a table row element and assign to a "row" variable
-    let row = document.createElement("tr");
+    const row = document.createElement("tr");
     for (let x = 0; x < WIDTH; x++) {
       // TODO: Create a table cell element and assign to a "cell" variable
-      let cell = document.createElement("td");
+      const cell = document.createElement("td");
       // TODO: add an id, y-x, to the above table cell element
       cell.setAttribute("id", `${y}-${x}`);
       // you'll use this later, so make sure you use y-x
