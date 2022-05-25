@@ -16,14 +16,12 @@ let currPlayer = 1; // active player: 1 or 2
 let board = makeBoard();
 makeHtmlBoard();
 
-
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  *    Return board array.
  */
 
 function makeBoard() {
-
   const board = [];
   for (let y = 0; y < HEIGHT; y++) {
     let row = [];
@@ -38,7 +36,6 @@ function makeBoard() {
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
-
   const htmlBoard = document.getElementById("board");
 
   // Create clickable table header
@@ -58,18 +55,14 @@ function makeHtmlBoard() {
   // uses HEIGHT to create table rows
   // uses WIDTH to create table cells for each row
   for (let y = 0; y < HEIGHT; y++) {
-    // TODO: Create a table row element and assign to a "row" variable
     const row = document.createElement("tr");
     for (let x = 0; x < WIDTH; x++) {
-      // TODO: Create a table cell element and assign to a "cell" variable
       const cell = document.createElement("td");
-      // TODO: add an id, y-x, to the above table cell element
       cell.setAttribute("id", `${y}-${x}`);
       // you'll use this later, so make sure you use y-x
-      // TODO: append the table cell to the table row
+
       row.append(cell);
     }
-    // TODO: append the row to the html board
     htmlBoard.append(row);
   }
 }
@@ -85,6 +78,10 @@ function findSpotForCol(x) {
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  const piece = document.createElement("div");
+  piece.classList.add("piece", `${currPlayer}`);
+  const td = document.getElementById(`${y}-${x}`);
+  td.append(piece);
 }
 
 /** endGame: announce game end */
