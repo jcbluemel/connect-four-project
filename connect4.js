@@ -10,8 +10,7 @@
 const WIDTH = 7;
 const HEIGHT = 6;
 
-let currPlayer = "p1"; // active player: 1 or 2
-// const board = []; // array of rows, each row is array of cells  (board[y][x])
+let currPlayer = "p1"; // active player: p1 or p2
 
 let board = makeBoard();
 makeHtmlBoard();
@@ -25,6 +24,7 @@ function makeBoard() {
   const board = [];
   for (let y = 0; y < HEIGHT; y++) {
     let row = [];
+
     for (let x = 0; x < WIDTH; x++) {
       row.push(null);
     }
@@ -49,6 +49,7 @@ function makeHtmlBoard() {
     headCell.setAttribute("id", x);
     top.append(headCell);
   }
+
   htmlBoard.append(top);
 
   // dynamically creates the main part of html board
@@ -56,11 +57,10 @@ function makeHtmlBoard() {
   // uses WIDTH to create table cells for each row
   for (let y = 0; y < HEIGHT; y++) {
     const row = document.createElement("tr");
+
     for (let x = 0; x < WIDTH; x++) {
       const cell = document.createElement("td");
       cell.setAttribute("id", `${y}-${x}`);
-      // you'll use this later, so make sure you use y-x
-
       row.append(cell);
     }
     htmlBoard.append(row);
@@ -107,7 +107,6 @@ function handleClick(evt) {
 
   // place piece in board and add to HTML table
   board[y][x] = currPlayer;
-  console.log("board =", board[y][x]);
   placeInTable(y, x);
 
   // check for win
@@ -116,9 +115,7 @@ function handleClick(evt) {
   }
 
   // check for tie
-  //if (board.every((square) => square !== null)) {
   if (board.every((row) => !row.includes(null))) {
-    console.log(board);
     return endGame("Tie Game!");
   }
   // switch players
