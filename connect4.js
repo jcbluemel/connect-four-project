@@ -104,8 +104,10 @@ function handleClick(evt) {
   if (y === null) {
     return;
   }
+
   // place piece in board and add to HTML table
   board[y][x] = currPlayer;
+  console.log("board =", board[y][x]);
   placeInTable(y, x);
 
   // check for win
@@ -114,11 +116,13 @@ function handleClick(evt) {
   }
 
   // check for tie
-  if (board.every(square => square === null)) {
+  //if (board.every((square) => square !== null)) {
+  if (board.every((row) => !row.includes(null))) {
+    console.log(board);
     return endGame("Tie Game!");
   }
   // switch players
-  (currPlayer === "p1") ? currPlayer = "p2" : currPlayer = "p1";
+  currPlayer === "p1" ? (currPlayer = "p2") : (currPlayer = "p1");
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -150,7 +154,12 @@ function checkForWin() {
         [y, x + 2],
         [y, x + 3],
       ];
-      let vert;
+      let vert = [
+        [y, x],
+        [y + 1, x],
+        [y + 2, x],
+        [y + 3, x],
+      ];
       let diagDL;
       let diagDR;
 
